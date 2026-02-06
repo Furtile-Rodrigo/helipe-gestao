@@ -1,0 +1,5 @@
+streamlit
+pandas
+gspread
+google-auth
+```[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQEaRd-xoVDDXZGjGu5NqTWuvESjrn0BgpsSrPu0XuB-WoNn-C3huz8ZPBJgnEJE4WSl3yHBCK2acI1pseKjseSuEeeqdRqFknvr-5aK7xMRWPQdMZe0UVAnlgC5n-wvXu111ekZVCdYh8Jafph3QikzgMNYhzd4L8flVJE%3D)][[2](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQH79wLXhNKhwoRnh5X5-vF4xlJPCrUOr8tPXS-hT1DZ97YaZg4PX5NPiCcpE8aoZSz44bnpCOsYqKOv_jyRT57xsG6Ej1gTuylSrEvUezpNkuUVtnY7nyw8DBvqrzgl242EqWrMlv2bLbBckryzpXBjy1Uf-6R-4GVz-872yOhyYhMBoGyU_VkfeSjEYydWqZX6QyZ-qQXgFMG4g7jzug%3D%3D)]
