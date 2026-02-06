@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1FgE_S2OFa3xLQ1mf60nAKyByLm4AXVD-
 """
 
-pip install gspread google-auth
-
 import streamlit as st
 import pandas as pd
 import gspread
