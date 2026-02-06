@@ -20,7 +20,15 @@ ID_PLANILHA = "1vOjr5SnrTHHf6lV5pP73nyfl42QwWiahw25lvHFCKnw"
 
 def connect_sheets():
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
+
+    # Esta linha tenta ler dos Secrets do Streamlit Cloud
+    if "gcp_service_account" in st.secrets:
+        creds_info = st.secrets["gcp_service_account"]
+        creds = Credentials.from_service_account_info(creds_info, scopes=scope)
+    else:
+        # Se não achar nos secrets (ex: rodando local), procura o arquivo
+        creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
+
     client = gspread.authorize(creds)
     return client.open_by_key(ID_PLANILHA)
 
