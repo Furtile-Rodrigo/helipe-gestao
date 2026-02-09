@@ -4,39 +4,47 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
 
-# --- CONFIGURAÇÕES DO GOOGLE SHEETS ---
+# --- 1. CONFIGURAÇÕES ---
 ID_PLANILHA = "1vOjr5SnrTHHf6lV5pP73nyfl42QwWiahw25lvHFCKnw"
 
 def connect_sheets():
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-
-    # Esta linha tenta ler dos Secrets do Streamlit Cloud
     if "gcp_service_account" in st.secrets:
         creds_info = st.secrets["gcp_service_account"]
         creds = Credentials.from_service_account_info(creds_info, scopes=scope)
     else:
-        # Se não achar nos secrets (ex: rodando local), procura o arquivo
         creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
-
     client = gspread.authorize(creds)
     return client.open_by_key(ID_PLANILHA)
 
-# Tenta conectar e carregar os dados
+# --- 2. TENTATIVA DE CONEXÃO ---
+# Inicializamos a variável como None para evitar o erro de "não definido"
+sh = None 
+
 try:
     sh = connect_sheets()
 except Exception as e:
     st.error(f"Erro de conexão: {e}")
+    st.info("O sistema continuará carregando o layout, mas os dados da planilha não estarão disponíveis até que a chave seja corrigida.")
 
-# --- ESTILIZAÇÃO HELIPE ---
+# --- 3. ESTILIZAÇÃO ---
 st.markdown("""
     <style>
     .stApp { background-color: #FDFBF7; }
     [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
     .stButton>button { background-color: #8B5A2B; color: white; border-radius: 6px; border: none; width: 100%; }
-    .stMetric { background-color: #ffffff; padding: 15px; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
     </style>
     """, unsafe_allow_html=True)
 
+# --- 4. SÓ RODA O RESTO SE O 'sh' EXISTIR ---
+if sh:
+    # AQUI COMEÇA O RESTO DO SEU CÓDIGO (Navegação, Telas, etc)
+    # Certifique-se de que todo o seu código atual (if page == 'Dashboard' etc) 
+    # esteja "dentro" deste bloco 'if sh:', ou seja, com um recuo (espaço) para a direita.
+    
+    if 'page' not in st.session_state: st.session_state.page = 'Dashboard'
+    def navegar(p): st.session_state.page = p
+        
 # --- FUNÇÕES DE LÓGICA (BACKEND) ---
 
 def mover_para_fluxo(aba_origem, id_linha, descricao, valor, tipo):
