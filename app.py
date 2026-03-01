@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import gspread
+st.set_page_config(page_title="Helipe Gestão", layout="wide")
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
@@ -40,9 +41,19 @@ except Exception as e:
 # --- 3. ESTILIZAÇÃO ---
 st.markdown("""
     <style>
+    /* Cores e Botões Padrão */
     .stApp { background-color: #FDFBF7; }
     [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
     .stButton>button { background-color: #8B5A2B; color: white; border-radius: 6px; border: none; width: 100%; }
+    
+    /* Ajuste para telas pequenas (Celular) */
+    @media (max-width: 640px) {
+        .main .block-container {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            padding-top: 1rem;
+        }
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -97,7 +108,7 @@ if sh:
         with tab3:
             st.write("#### Histórico do Fluxo de Caixa")
             df_fluxo = get_data_safe("Fluxo_Caixa")
-            st.dataframe(df_fluxo)
+            st.dataframe(df_fluxo, use_container_width=True)
             
             st.write("---")
             st.write("#### Registrar Entrada/Saída Avulsa")
@@ -146,9 +157,9 @@ if sh:
                 st.rerun()
 
         df_pedidos = get_data_safe("Pedidos")
-        st.dataframe(df_pedidos)
+        st.dataframe(df_pedidos, use_container_width=True)
 
     elif st.session_state.page == 'Expedicao':
         st.title("🚚 Expedição e Logística")
         df_exp = get_data_safe("Expedicao")
-        st.dataframe(df_exp)
+        st.dataframe(df_exp, use_container_width=True)
