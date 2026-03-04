@@ -57,7 +57,6 @@ st.markdown("""
     [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
     .stButton>button {
         background-color: #8B5A2B;
-        color: white;
         border-radius: 6px;
         border: none;
     }
