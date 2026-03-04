@@ -1,12 +1,24 @@
 import streamlit as st
 import pandas as pd
 import gspread
-st.set_page_config(page_title="Helipe Gestão", layout="wide", initial_sidebar_state="collapsed")
 from google.oauth2.service_account import Credentials
 from datetime import datetime
+import plotly.express as px
+
+#Config da página
+st.set_page_config(page_title="Helipe Gestão", layout="wide", initial_sidebar_state="collapsed")
 
 # --- 1. CONFIGURAÇÕES ---
 ID_PLANILHA = "1vOjr5SnrTHHf6lV5pP73nyfl42QwWiahw25lvHFCKnw"
+
+def limpar_valor(val):
+    if pd.isna(val) or val == "": 
+        return 0.0
+    val_limpo = str(val).replace("R$", "").replace(".", "").replace(",", ".").strip()
+    try:
+        return float(val_limpo)
+    except:
+        return 0.0
 
 def connect_sheets():
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
@@ -39,14 +51,14 @@ except Exception as e:
     st.error(f"Erro de conexão: {e}")
 
 # --- 3. ESTILIZAÇÃO ---
-st.markdown("""
-    <style>
-    /* Cores e Botões Padrão */
-    .stApp { background-color: #FDFBF7; }
-    [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
-    .stButton>button { background-color: #8B5A2B; color: white; border-radius: 6px; border: none; width: 100%; }
-    </style>
-    """, unsafe_allow_html=True)
+#st.markdown("""
+#    <style>
+#    /* Cores e Botões Padrão */
+#    .stApp { background-color: #FDFBF7; }
+#    [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
+#    .stButton>button { background-color: #8B5A2B; color: white; border-radius: 6px; border: none; width: 100%; }
+#    </style>
+#    """, unsafe_allow_html=True)
 
 # --- 4. LÓGICA DO SISTEMA ---
 if sh:
