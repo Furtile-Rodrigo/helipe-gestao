@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import gspread
-st.set_page_config(page_title="Helipe Gestão", layout="wide")
+st.set_page_config(page_title="Helipe Gestão", layout="wide", initial_sidebar_state="collapsed")
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
@@ -45,15 +45,6 @@ st.markdown("""
     .stApp { background-color: #FDFBF7; }
     [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
     .stButton>button { background-color: #8B5A2B; color: white; border-radius: 6px; border: none; width: 100%; }
-    
-    /* Ajuste para telas pequenas (Celular) */
-    @media (max-width: 640px) {
-        .main .block-container {
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-            padding-top: 1rem;
-        }
-    }
     </style>
     """, unsafe_allow_html=True)
 
