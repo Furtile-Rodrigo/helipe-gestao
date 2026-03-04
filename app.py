@@ -51,17 +51,17 @@ except Exception as e:
     st.error(f"Erro de conexão: {e}")
 
 # --- 3. ESTILIZAÇÃO ---
-st.markdown("""
-    <style>
-    .stApp { background-color: #FDFBF7; }
-    [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
-    .stButton>button {
-        background-color: #8B5A2B;
-        border-radius: 6px;
-        border: none;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+#st.markdown("""
+#    <style>
+#    .stApp { background-color: #FDFBF7; }
+#    [data-testid="stSidebar"] { background-color: #A3AD8B !important; }
+#    .stButton>button {
+#        background-color: #8B5A2B;
+#       border-radius: 6px;
+#        border: none;
+#    }
+#    </style>
+#    """, unsafe_allow_html=True)
 
 # --- 4. LÓGICA DO SISTEMA ---
 if sh:
